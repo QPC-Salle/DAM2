@@ -1,0 +1,22 @@
+UFO2D
+
+Video YT
+
+
+1. Descarregar imatges moodle
+2. Crear directori sprites a Unity
+
+
+
+Sorting Layer
+ Capes
+ 
+   Capa 0 default,
+   Capa 1 Background,
+   Capa 2 Player,
+   
+Obrir Camara
+ Size Proporcional mes alt mes alluny
+ 
+Colissions
+ 
