@@ -1,6 +1,7 @@
 <?php
+include 'SQL.php';
+$DB = "apphp";
 session_start();
-
 ?>
 
 <!DOCTYPE html>

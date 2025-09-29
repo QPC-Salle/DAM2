@@ -1,28 +1,21 @@
 <?php
+include('SQL.php');
+$DB = "apphp";
 
-require 'index.php';
 
-if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-    $username = $_POST['username'];
-    $password = $_POST['password'];
-
-    // Connexió a la base de dades
-    $conn = new mysqli('localhost', 'root', '', 'appphp');
-
-    // Buscar l'usuari a la base de dades
-    $stmt = $conn->prepare("SELECT * FROM users WHERE Name = ?");
-    $stmt->bind_param("s", $username);
-    $stmt->execute();
-    $user = $stmt->fetch();
-
-    if ($user && password_verify($password, $user['Password'])) {
-        // Iniciar sessió si les credencials són correctes
-        session_start();
-        $_SESSION['username'] = $user['Name'];
-        header('Location: index.php');
-    } else {
-        echo "Credencials incorrectes. Torna a intentar-ho.";
-    }
+$sql = new SQL($DB, "users");
+try {
+    $conn = $sql->__connectDB();
+} catch (Exception $e) {
+    die("Connection failed: " . $e->getMessage());
 }
+$conn->close();
+
+if ($sql->__userExists($name, $password)) {
+    echo "Login successful!";
+} else {
+    echo "Invalid credentials.";
+}
+
 
 ?>
